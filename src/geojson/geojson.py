@@ -88,12 +88,12 @@ class Transformer:
             return self.geometry_collection(geometry)
 
     def point(self, geometry):
-        geometry['coordinates'] = self.convert_point(geometry[coordinates])
+        geometry['coordinates'] = self.convert_point(geometry['coordinates'])
         return geometry
 
     def multi_point(self, geometry):
         geometry['coordinates'] = map(
-            self.convert_point, geometry[coordinates])
+            self.convert_point, geometry['coordinates'])
         return geometry
 
     def line_string(self, geometry):
