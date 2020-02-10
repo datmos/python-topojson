@@ -15,7 +15,7 @@ class Hashtable:
 
     def __init__(self, size):
         self.size = 1 << int(ceil(log(size) / log(2)))
-        self.table = map(lambda x: False, range(0, int(size)))
+        self.table = list(map(lambda x: False, range(0, int(size))))
         self.h = hasher(size)
 
     def peak(self, key):
