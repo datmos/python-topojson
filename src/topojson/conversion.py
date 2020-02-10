@@ -5,7 +5,7 @@ from json import load, dump
 def convert(geojson, topojson, object_name=False, *args, **kwargs):
     if isinstance(geojson, dict):
         input_dict = geojson
-    elif isinstance(geojson, str) or isinstance(geojson, unicode):
+    elif isinstance(geojson, str):
         inFile = open(geojson)
         input_dict = load(inFile)
         if not object_name and 'type' in input_dict and hasattr(
@@ -20,7 +20,7 @@ def convert(geojson, topojson, object_name=False, *args, **kwargs):
         else:
             input_dict = {'name': input_dict}
     output_dict = topology(input_dict, *args, **kwargs)
-    if isinstance(topojson, str) or isinstance(topojson, unicode):
+    if isinstance(topojson, str):
         with open(topojson, 'w') as f:
             dump(output_dict, f)
     elif isinstance(topojson, file):
