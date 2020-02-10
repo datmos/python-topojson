@@ -1,5 +1,5 @@
 # from https://github.com/omarestrella/simplify.py
-from mytypes import Types
+from .mytypes import Types
 
 
 def getSquareDistance(p1, p2):

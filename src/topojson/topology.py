@@ -1,13 +1,14 @@
 # coding=utf8
-from mytypes import Types
-from stitchpoles import stitch
-from coordinatesystems import systems
-from bounds import bound
-from line import Line
-from clockwise import Clock
+from .mytypes import Types
+from .stitchpoles import stitch
+from .coordinatesystems import systems
+from .bounds import bound
+from .line import Line
+from .clockwise import Clock
+from .simplify import simplify_object
+from .utils import is_infinit, E
+
 from decimal import Decimal
-from simplify import simplify_object
-from utils import is_infinit, E
 
 
 def property_transform(outprop, key, inprop):

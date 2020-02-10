@@ -1,9 +1,7 @@
-from hashtable import Hashtable
-#import shelve
-#from os import remove
+from .hashtable import Hashtable
+from .utils import point_compare
+
 from hashlib import sha1
-#from tempfile import mkdtemp
-from utils import point_compare
 
 
 class Arcs:

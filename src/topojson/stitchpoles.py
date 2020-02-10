@@ -1,4 +1,4 @@
-from mytypes import Types
+from .mytypes import Types
 
 
 def stitch(objects, options=False):

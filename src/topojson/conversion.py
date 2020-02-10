@@ -1,4 +1,4 @@
-from topology import topology
+from .topology import topology
 from json import load, dump
 
 
