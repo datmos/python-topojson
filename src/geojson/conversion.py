@@ -12,7 +12,7 @@ def convert(topojson, input_name=None, geojson=None):
     elif isinstance(topojson, file):
         parsed_geojson = load(topojson)
     if input_name is None:
-        input_name = parsed_geojson['objects'].keys()[0]
+        input_name = list(parsed_geojson['objects'].keys())[0]
     out = from_topo(parsed_geojson, input_name)
     if isinstance(geojson, str) or isinstance(geojson, unicode):
         with open(geojson, 'w') as f:

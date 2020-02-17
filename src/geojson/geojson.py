@@ -14,7 +14,7 @@ class Transformer:
     def __init__(self, transform, arcs):
         self.scale = transform['scale']
         self.translate = transform['translate']
-        self.arcs = map(self.convert_arc, arcs)
+        self.arcs = list(map(self.convert_arc, arcs))
 
     def convert_arc(self, arc):
         out_arc = []
@@ -26,7 +26,7 @@ class Transformer:
         return out_arc
 
     def reversed_arc(self, arc):
-        return map(None, reversed(self.arcs[~arc]))
+        return list(map(None, reversed(self.arcs[~arc])))
 
     def stitch_arcs(self, arcs):
         line_string = []
@@ -45,7 +45,7 @@ class Transformer:
         return line_string
 
     def stich_multi_arcs(self, arcs):
-        return map(self.stitch_arcs, arcs)
+        return list(map(self.stitch_arcs, arcs))
 
     def convert_point(self, point):
         return [
@@ -92,8 +92,7 @@ class Transformer:
         return geometry
 
     def multi_point(self, geometry):
-        geometry['coordinates'] = map(
-            self.convert_point, geometry['coordinates'])
+        geometry['coordinates'] = list(map(self.convert_point, geometry['coordinates']))
         return geometry
 
     def line_string(self, geometry):
@@ -107,13 +106,13 @@ class Transformer:
         return geometry
 
     def multi_poly(self, geometry):
-        geometry['coordinates'] = map(self.stich_multi_arcs, geometry['arcs'])
+        geometry['coordinates'] = list(map(self.stich_multi_arcs, geometry['arcs']))
         del geometry['arcs']
         return geometry
 
     def geometry_collection(self, geometry):
         out = {'type': 'FeatureCollection'}
-        out['features'] = map(self.feature, geometry['geometries'])
+        out['features'] = list(map(self.feature, geometry['geometries']))
         return out
 
 
