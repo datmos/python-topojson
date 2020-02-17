@@ -151,6 +151,7 @@ def topology(
             if 'arcs' in geometry:
                 del geometry['coordinates']
             return geometry
+    print(objects)
     make_topo_inst = make_topo(objects)
     return {
         'type': "Topology",
