@@ -47,7 +47,7 @@ class Arcs:
 
     def get_hash(self, arc):
         ourhash = sha1()
-        ourhash.update(str(arc))
+        ourhash.update(str(arc).encode('utf-8'))
         return ourhash.hexdigest()
 
     def check(self, arcs):
