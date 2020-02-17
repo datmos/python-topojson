@@ -93,7 +93,7 @@ def topology(
                 if line not in lines:
                     lines.append(line)
     fcInst = find_coincidences(objects)
-    polygon = lambda poly: map(ln.line_closed, poly)
+    polygon = lambda poly: list(map(ln.line_closed, poly))
     # Convert features to geometries, and stitch together arcs.
 
     class make_topo(Types):
@@ -110,24 +110,21 @@ def topology(
 
         def FeatureCollection(self, collection):
             collection['type'] = "GeometryCollection"
-            collection['geometries'] = map(
-                self.Feature, collection['features'])
+            collection['geometries'] = list(map(self.Feature, collection['features']))
             del collection['features']
             return collection
 
         def GeometryCollection(self, collection):
-            collection['geometries'] = map(
-                self.geometry, collection['geometries'])
+            collection['geometries'] = list(map(self.geometry, collection['geometries']))
 
         def MultiPolygon(self, multiPolygon):
-            multiPolygon['arcs'] = map(polygon, multiPolygon['coordinates'])
+            multiPolygon['arcs'] = list(map(polygon, multiPolygon['coordinates']))
 
         def Polygon(self, polygon):
-            polygon['arcs'] = map(ln.line_closed, polygon['coordinates'])
+            polygon['arcs'] = list(map(ln.line_closed, polygon['coordinates']))
 
         def MultiLineString(self, multiLineString):
-            multiLineString['arcs'] = map(
-                ln.line_open, multiLineString['coordinates'])
+            multiLineString['arcs'] = list(map(ln.line_open, multiLineString['coordinates']))
 
         def LineString(self, lineString):
             lineString['arcs'] = ln.line_open(lineString['coordinates'])
