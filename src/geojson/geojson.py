@@ -26,7 +26,7 @@ class Transformer:
         return out_arc
 
     def reversed_arc(self, arc):
-        return reversed(self.arcs[~arc])
+        return list(reversed(self.arcs[~arc]))
 
     def stitch_arcs(self, arcs):
         line_string = []
